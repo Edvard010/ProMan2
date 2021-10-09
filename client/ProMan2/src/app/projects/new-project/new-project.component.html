@@ -7,19 +7,19 @@
             <h2>Dodaj projekt</h2>
             <mat-form-field>
                 <mat-label>Name</mat-label>
-                <input matInput placeholder="Nazwa">
+                <input matInput placeholder="Nazwa" formControlName="name">
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Pricing</mat-label>
-                <input matInput placeholder="Wycena">
+                <input matInput placeholder="Wycena" formControlName="pricing">
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Description</mat-label>
-                <textarea matInput placeholder="Opis"></textarea>
+                <textarea matInput placeholder="Opis" formControlName="description"></textarea>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Deadline</mat-label>
-                <input matInput placeholder="Deadline">
+                <input matInput placeholder="Deadline" formControlName="deadline">
             </mat-form-field>            
         </mat-card-content>
         <mat-card-actions>

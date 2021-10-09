@@ -4,6 +4,7 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ProjectService } from '../../project.service';
 import { NewComment } from '../new-comment-dialog/new-comment';
+import { NewTask } from './new-task';
 
 @Component({
   selector: 'app-new-task-dialog',
@@ -33,8 +34,8 @@ export class NewTaskDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  onSubmit(value: any) {
-    if (value.message) {
+  onSubmit(value: NewTask) {
+    if (value.description) {
       const description = value.description.replace(/\n/g, '<br />');
       value.description = description;
 
