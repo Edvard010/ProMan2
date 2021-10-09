@@ -1,0 +1,12 @@
+<h1 mat-dialog-title>Nowy komentarz</h1>
+<div mat-dialog-content>
+    <form [formGroup]="form" (ngSubmit)="onSubmit(form.value)">
+        <mat-form-field>
+            <textarea matInput placeholder="Treść" formControlName="message"></textarea>
+        </mat-form-field>
+        <div>
+            <button mat-raised-button color="secondary" type="button" (click)="cancel()">Anuluj</button>
+            <button mat raised-button color="primary">Dodaj</button>
+        </div>
+    </form>
+</div>

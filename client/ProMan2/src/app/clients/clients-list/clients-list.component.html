@@ -1,0 +1,50 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+        <div class="title">
+            Klienci
+        </div>
+        <br>
+        <div class="search">
+            <mat-form-field>
+                <input matInput (keyup)="applyFilter($event)" placeholder="wyszukaj">
+            </mat-form-field>
+        </div>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-table [dataSource]="clients">
+            <ng-container matColumnDef="number">
+                <mat-header-cell *matHeaderCellDef style="width: 10%;">Numer</mat-header-cell>
+                <mat-cell *matCellDef="let element"><a [routerLink]="['/clients', element.id]">{{ element.id }}</a>
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef style="width: 30%;">Nazwa</mat-header-cell>
+                <mat-cell *matCellDef="let element"><a [routerLink]="['/clients', element.id]">{{ element.name }}</a>
+                </mat-cell>
+            </ng-container>
+            
+            <ng-container matColumnDef="email">
+                <mat-header-cell *matHeaderCellDef >Email</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                   {{ element.email }}
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="phone">
+                <mat-header-cell *matHeaderCellDef >Telefon</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                   {{ element.phone }}
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="projects">
+                <mat-header-cell *matHeaderCellDef >Liczba projektów</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                   {{ element.projects }}
+                </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+        </mat-table>
+    </mat-card-content>
+</mat-card>

@@ -1,0 +1,16 @@
+<table mat-table [dataSource]="comments">
+    <ng-container matColumnDef="message">
+        <th mat-header-cell *matHeaderCellDef>Treść</th>
+        <td mat-cell *matCellDef="let element"><div [innerHTML]="element.message"></div></td>
+    </ng-container>
+    <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef style="width: 15%;">Data</th>
+        <td mat-cell *matCellDef="let element">{{element.date}}</td>
+    </ng-container>
+    <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef style="width: 10%;"></th>
+        <td mat-cell *matCellDef="let element"><button mat-button color="warn" type="button" (click)="removeComment(element.id)">X</button></td>
+    </ng-container>
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

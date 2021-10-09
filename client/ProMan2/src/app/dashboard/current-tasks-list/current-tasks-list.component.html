@@ -1,0 +1,35 @@
+<table mat-table [dataSource]="tasks">
+
+    <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef style="width: 30%">Tytuł</th>
+        <td mat-cell
+        [ngClass]="{'done': element.status === 'Done', 'in-progress': element.status === 'InProgress'}"
+        *matCellDef="let element">{{element.title}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="project">
+        <th mat-header-cell *matHeaderCellDef style="width: 20%">Projekt</th>
+        <td mat-cell
+        [ngClass]="{'done': element.status === 'Done', 'in-progress': element.status === 'InProgress'}"
+        *matCellDef="let element">
+        <a [routerLink]="['/project', element.projectId]">{{ element.projectName }}</a>
+    </td>
+    </ng-container>
+
+    <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>Data</th>
+        <td mat-cell
+        [ngClass]="{'done': element.status === 'Done', 'in-progress': element.status === 'InProgress'}"
+        *matCellDef="let element">{{element.date}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef style="width: 20%">Status</th>
+        <td mat-cell
+        [ngClass]="{'done': element.status === 'Done', 'in-progress': element.status === 'InProgress'}"
+        *matCellDef="let element">{{getTaskStatus(element)}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

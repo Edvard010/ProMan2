@@ -1,0 +1,11 @@
+table {
+    width: 100%;
+}
+
+.done {
+    background-color: #98c498;
+}
+
+.in-progress {
+    background-color: #a0c9ff;
+}

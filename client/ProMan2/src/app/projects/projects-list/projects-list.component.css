@@ -1,0 +1,16 @@
+table {
+    width: 100%;
+}
+
+.title, .search {
+    display: inline-block;
+}
+
+.search {
+    text-align: right;
+    min-width: 50%;
+}
+
+.search .mat-form-field {
+    width: 100%;
+}

@@ -1,0 +1,49 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+        <div class="title">
+            Projekty
+        </div>
+        <br>
+        <div class="search">
+            <mat-form-field>
+                <input matInput (keyup)="applyFilter($event)" placeholder="wyszukaj">
+            </mat-form-field>
+        </div>
+        </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-table [dataSource]="projects">
+            <ng-container matColumnDef="number">
+                <mat-header-cell *matHeaderCellDef style="width: 10%;">Numer</mat-header-cell>
+                <mat-cell *matCellDef="let element"><a [routerLink]="['/project', element.id]">{{ element.id }}</a>
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef style="width: 30%;">Nazwa</mat-header-cell>
+                <mat-cell *matCellDef="let element"><a [routerLink]="['/project', element.id]">{{ element.name }}</a>
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="client">
+                <mat-header-cell *matHeaderCellDef style="width: 20%;">Klient</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                    <a *ngIf="element.clientId != null" [routerLink]="['/client', element.clientId]">{{ element.client }}</a>
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="deadline">
+                <mat-header-cell *matHeaderCellDef >Data zakończenia</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                   {{ element.deadline }}
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="status">
+                <mat-header-cell *matHeaderCellDef >Status</mat-header-cell>
+                <mat-cell *matCellDef="let element">
+                   {{ getProjectStatus(element) }}
+                </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: displayedColumns"></mat-row>
+        </mat-table>
+    </mat-card-content>
+</mat-card>

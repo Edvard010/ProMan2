@@ -1,0 +1,21 @@
+<mat-sidenav-container>
+    <mat-sidenav mode="side" opened>
+        <h2 class="mat-title">ProMan</h2>
+        <mat-nav-list>
+            <a mat-list-item routerLink='/'>Dashboard</a>
+            <a mat-list-item routerLink='/projects'>Projekty</a>
+            <a mat-list-item [routerLink]="['/clients']">Klienci</a>
+            <a mat-list-item [routerLink]="['/new-client']">Nowy klient</a>
+            <a mat-list-item [routerLink]="['/new-project']">Nowy projekt (bez klienta)</a>
+        </mat-nav-list>
+        <mat-divider></mat-divider>
+        <mat-nav-list>
+            <a mat-list-item [routerLink]="['/login']">Wyloguj</a>
+        </mat-nav-list>
+    </mat-sidenav>
+    <mat-sidenav-content>
+        <mat-card class="content">
+            <router-outlet></router-outlet>
+        </mat-card>
+    </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,39 @@
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>
+        <div class="title">
+            <b>Klient: </b> {{client.name}}
+        </div>
+    </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="details">{{client.description}}</div>
+        <div class="details"><b>Adres: </b><br>
+            {{client.address}}
+        </div>
+        <div class="details"><b>E-mail: </b>
+            {{client.email}}
+        </div>
+        <div class="details"><b>Telefon: </b>
+            {{client.phone}}
+        </div>
+        <div class="layout-column">
+            <mat-card>
+                <mat-card-header>
+                    <mat-card-title>
+                        <div class="title">
+                            Projekty
+                        </div>
+                        <div class="new-project">
+                            <a [routerLink]="['/client', client.id, 'new-project']" mat-raised-button
+                            color="primary">Nowy projekt</a>
+                        </div>
+                    </mat-card-title>
+                </mat-card-header>
+                    <mat-card-content>
+                        <app-client-projects-list [projects]="client.projects"></app-client-projects-list>
+                    </mat-card-content>                
+            </mat-card>
+        </div>
+    </mat-card-content>
+</mat-card>

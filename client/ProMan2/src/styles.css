@@ -1,0 +1,17 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif;
+background-color: #6200EE ;
+ }
+
+ .mat-card-header-text {
+    width: 100%;
+}
+
+.layout-column {
+    display: inline-block;
+    width: 50%;
+    padding: 1em;
+    box-sizing: border-box;
+}

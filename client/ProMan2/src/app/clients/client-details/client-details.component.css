@@ -1,0 +1,14 @@
+.title, .new-project {
+    display: inline-block;
+    width: 50%;
+}
+
+.new-project {
+    text-align: right;
+    min-width: 50%;
+}
+
+.details {
+    font-size: 1em;
+    padding: 1em;
+}

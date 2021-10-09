@@ -1,0 +1,31 @@
+.title, .action {
+    display: inline-block;
+    width: 50%;
+}
+
+.action {
+    text-align: right;
+    min-width: 50%;
+}
+
+.footer {
+    text-align: right;
+    margin: 1em;
+}
+
+.deadline {
+    background-color: #c45858;
+    color: #ffffff;
+    width: auto;
+    text-align: center;
+    display: inline-block;
+    padding: 0 1em;
+}
+
+.finished {
+    background-color: #c45858;
+    color: #ffffff;
+    text-align: center;
+    display: inline-block;
+    padding: 1em 1em;
+}

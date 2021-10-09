@@ -1,0 +1,26 @@
+<mat-card>
+<mat-card-header>
+    <mat-card-title>
+        <h2>Dashboard</h2>
+    </mat-card-title>
+</mat-card-header>    
+<mat-card-content>
+    <mat-card class="title">
+        <mat-card-header>
+            <mat-card-title>Zadania w tym tygodniu ({{ getToday() }} - {{ getWeekLater() }})</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <app-current-tasks-list></app-current-tasks-list>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card class="title">
+        <mat-card-header>
+            <mat-card-title>Zadania w projektach</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <app-project-tasks-chart></app-project-tasks-chart>
+        </mat-card-content>
+    </mat-card>
+</mat-card-content>
+</mat-card>

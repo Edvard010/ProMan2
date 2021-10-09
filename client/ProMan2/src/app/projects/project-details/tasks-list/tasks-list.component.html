@@ -1,0 +1,38 @@
+<table mat-table [dataSource]="tasks">
+    <ng-container matColumnDef="number">
+        <th mat-header-cell *matHeaderCellDef>Numer</th>
+        <td mat-cell
+        [ngClass]="{'done': element.status === 'Done', 'in-progress': element.status === 'InProgress'}"
+        *matCellDef="let element">{{ element.number }}</td>
+    </ng-container>
+    <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef style="width: 30%">Tytuł</th>
+        <td mat-cell
+        [ngClass]="{'done': element.status === 'Done', 'in-progress': element.status === 'InProgress', 'finished': element.status === 'Finished'}"
+        *matCellDef="let element">{{ element.title }}</td>
+    </ng-container>
+    <ng-container matColumnDef="date">
+        <th mat-header-cell *matHeaderCellDef>Data</th>
+        <td mat-cell
+        [ngClass]="{'done': element.status === 'Done', 'in-progress': element.status === 'InProgress', 'removed': element.status === 'Removed'}"
+        *matCellDef="let element">{{ element.date }}</td>
+    </ng-container>
+    <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef style="width: 20%">Status</th>
+        <td mat-cell
+        [ngClass]="{'done': element.status === 'Done', 'in-progress': element.status === 'InProgress', 'removed': element.status === 'Removed'}"
+        *matCellDef="let element">
+        <mat-form-field *ngIf="!disabled">
+            <mat-select [(value)]="element.status" (selectionChange)="changeTaskStatus(element.number, $event.value)">
+                <mat-option value="New">Nowe</mat-option>
+                <mat-option value="InProgress">W trakcie</mat-option>
+                <mat-option value="Done">Zakończone</mat-option>
+                <mat-option value="Removed">Usunięte</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>

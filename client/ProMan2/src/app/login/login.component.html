@@ -1,0 +1,20 @@
+<form [formGroup]="form" (submit)="onSubmit(form.value)">
+    <mat-card>
+        <mat-card-header>
+        <mat-card-title>Logowanie</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <h2>Witaj, {{ login }}</h2>
+            <mat-form-field>
+                <input matInput placeholder="Login" formControlName="login" type="text">
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Hasło" formControlName="password" type="password">
+            </mat-form-field>
+            <span *ngIf="wrongPassword">Nieprawidłowe hasło</span>
+        </mat-card-content>
+        <mat-card-actions>
+            <button type="submit" mat-raised-button color="primary">Zaloguj</button>
+        </mat-card-actions>
+    </mat-card>
+</form>
