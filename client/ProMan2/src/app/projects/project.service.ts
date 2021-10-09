@@ -55,6 +55,7 @@ export class ProjectService {
   }
 
   addTask(newTask: NewTask, id: any): Observable<any> {
+    debugger;
     return this.http.post<any>(`https://localhost:44338/api/project/${id}/task`, newTask);
   }
 

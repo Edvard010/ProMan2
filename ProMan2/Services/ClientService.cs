@@ -58,7 +58,8 @@ namespace ProMan2.Services
                 Id = x.Id,
                 Name = x.Name,
                 Email = x.Email,
-                Phone = x.Phone,                
+                Phone = x.Phone,       
+                Projects = x.Projects.Count()
             });
 
 
