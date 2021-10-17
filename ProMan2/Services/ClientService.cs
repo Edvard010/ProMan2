@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using ProMan2.Dto;
 using ProMan2.Model;
 using System;
@@ -11,10 +12,12 @@ namespace ProMan2.Services
     public class ClientService
     {
         private readonly ProManContext _context;
+        private readonly IConfiguration _config;
 
-        public ClientService(ProManContext context)
+        public ClientService(ProManContext context, IConfiguration configuration)
         {
             _context = context;
+            _config = configuration;
         }
 
         public long Create(NewClientDto client)
@@ -32,6 +35,27 @@ namespace ProMan2.Services
 
             return newClient.Id;
         }
+
+        public void Change(long id, ClientChangesDto clientChanges)
+        {
+            var client = _context.Clients.SingleOrDefault(x => x.Id == id);
+            if (client != null)
+            {
+                client.Name = clientChanges.Name;
+                client.Email = clientChanges.Email;
+                client.Phone = clientChanges.Phone;
+                client.Address = clientChanges.Address;
+                client.Description = clientChanges.Description;
+            }
+            
+            else
+            {
+                return;
+            }
+            _context.SaveChanges();
+        }
+            
+                   
 
         public IEnumerable<ClientItemDto> GetAll()
         {
@@ -58,7 +82,7 @@ namespace ProMan2.Services
                 Id = x.Id,
                 Name = x.Name,
                 Email = x.Email,
-                Phone = x.Phone,       
+                Phone = x.Phone,
                 Projects = x.Projects.Count()
             });
 
@@ -93,6 +117,8 @@ namespace ProMan2.Services
                 })
             };
         }
+
+
     }
 }
 

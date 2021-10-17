@@ -14,26 +14,24 @@ namespace ProMan2.Controllers
     [ApiController]
     public class LoginController : ControllerBase
     {
-        private readonly ProManContext _context;
-        private UserService userService;        
+        private UserService _userService;        
 
-        public LoginController(ProManContext context, IConfiguration configuration)
+        public LoginController(UserService userService)
         {
-            _context = context;
-            userService = new UserService(_context, configuration);
+            _userService = userService;
         }
 
 
         [HttpGet("exists")]
         public UsernameDto Exists(UsernameDto login)
         {
-            return userService.UserExists(login);
+            return _userService.UserExists(login);
         }
 
         [HttpPost("login")]
         public UserDto Login(LoginDto login)
         {
-            return userService.Login(login);
+            return _userService.Login(login);
         }
     }
 }

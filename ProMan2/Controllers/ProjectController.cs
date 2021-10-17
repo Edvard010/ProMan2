@@ -16,43 +16,41 @@ namespace ProMan2.Controllers
     [ApiController]
     public class ProjectController : ControllerBase
     {
-        private readonly ProManContext _context;
-        private ProjectService projectService;
-        public ProjectController(ProManContext context)
+        private ProjectService _projectService;
+        public ProjectController(ProjectService projectService)
         {
-            _context = context;
-            projectService = new ProjectService(_context);
+            _projectService = projectService;
         }
         
 
         [HttpGet("{id}")]
         public ProjectDetailsDto GetDetails(long id)
         {
-            return projectService.Get(id);
+            return _projectService.Get(id);
         }
 
         [HttpPost]
         public long CreateProject([FromBody] NewProjectDto project)
         {
-            return projectService.Create(project);
+            return _projectService.Create(project);
         }
 
         [HttpGet]
         public IEnumerable<ProjectItemDto> GetAll()
         {
-            return projectService.GetAll();
+            return _projectService.GetAll();
         }
 
         [HttpPut("{id}/finish")]
         public void Finish(long id)
         {
-            projectService.Finish(id);
+            _projectService.Finish(id);
         }
 
         [HttpGet("statistics")]
         public IEnumerable<ProjectStatisticDto> GetStatistic()
         {
-            return projectService.GetStatistic();
+            return _projectService.GetStatistic();
         }
     }
 }

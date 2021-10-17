@@ -16,12 +16,10 @@ namespace ProMan2.Controllers
     public class CommentController : ControllerBase
 
     {
-        private readonly ProManContext _context;
-        private ProjectService projectService;
-        public CommentController(ProManContext context)
+        private ProjectService _projectService;
+        public CommentController(ProjectService projectService)
         {
-            _context = context;
-            projectService = new ProjectService(_context);
+            _projectService = projectService;
         }
 
         
@@ -29,19 +27,19 @@ namespace ProMan2.Controllers
         [HttpGet("{id}/comment")]
         public IEnumerable<CommentDto> GetAll(long id)
         {
-            return projectService.GetAllComments(id);
+            return _projectService.GetAllComments(id);
         }
 
         [HttpPost("{id}/comment")]
         public void Create(NewCommentDto comment, [FromRoute] long id)
         {
-            projectService.AddComment(comment, id);
+            _projectService.AddComment(comment, id);
         }
 
         [HttpDelete("comment/{id}")]
         public void Remove(long id)
         {
-            projectService.RemoveComment(id);
+            _projectService.RemoveComment(id);
         }
     }
 }

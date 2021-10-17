@@ -13,21 +13,19 @@ namespace ProMan2.Controllers
     [Route("api/[controller]")]
     [ApiController]
     public class RegisterController : ControllerBase
-    {
-        private readonly ProManContext _context;
-        private UserService userService;        
+    {        
+        private UserService _userService;        
 
-        public RegisterController(ProManContext context, IConfiguration configuration)
+        public RegisterController(UserService userService)
         {
-            _context = context;
-            userService = new UserService(_context, configuration);
+            _userService = userService;
         }
 
 
         [HttpPost]
         public void Register(RegisterDto register)
         {
-            userService.Register(register);
+            _userService.Register(register);
         }
     }
 }

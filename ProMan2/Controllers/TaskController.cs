@@ -15,38 +15,43 @@ namespace ProMan2.Controllers
     [Route("api/project")]
     [ApiController]
     public class TaskController : ControllerBase
-    {
-        private readonly ProManContext _context;
-        private ProjectService projectService;
-        public TaskController(ProManContext context)
+    {        
+        private ProjectService _projectService;
+        public TaskController(ProjectService projectService)
         {
-            _context = context;
-            projectService = new ProjectService(_context);
+            _projectService = projectService;
         }
         
 
         [HttpGet("{id}/task")]
         public IEnumerable<TaskDto> GetAll(long id)
         {
-            return projectService.GetAllTasks(id);
+            return _projectService.GetAllTasks(id);
         }
 
         [HttpPost("{id}/task")]
         public void Create(NewTaskDto task, [FromRoute]long id)
         {
-            projectService.AddTask(task, id);
+            _projectService.AddTask(task, id);
         }
 
         [HttpPut("task/{id}")]
         public void ChangeStatus(TaskStatusDto status)
         {
-            projectService.ChangeTaskStatus(status);
+            _projectService.ChangeTaskStatus(status);
         }
 
         [HttpGet("task/between")]
         public IEnumerable<TaskItemDto> GetBetween(string from, string to)
         {
-            return projectService.GetTaskBetween(from, to);
+            return _projectService.GetTaskBetween(from, to);
         }
+
+        [HttpDelete("task/{id}")]
+        public void Remove(long id)
+        {
+            _projectService.RemoveTask(id);
+        }
+
     }
 }

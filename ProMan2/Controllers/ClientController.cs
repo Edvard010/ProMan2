@@ -15,31 +15,35 @@ namespace ProMan2.Controllers
     [ApiController]
     public class ClientController : ControllerBase
     {
-        private readonly ProManContext _context;
-        private ClientService clientService;
+        private ClientService _clientService;
 
-        public ClientController(ProManContext context)
+        public ClientController(ClientService clientService)
         {
-            _context = context;
-            clientService = new ClientService(_context);
+            _clientService = clientService;
         }
 
         [HttpGet]
         public IEnumerable<ClientItemDto> GetAll()
         {
-            return clientService.GetAll();
+            return _clientService.GetAll();
         }
 
         [HttpGet("{id}")]
         public ClientDetailsDto Get(long id)
         {
-            return clientService.Get(id);
+            return _clientService.Get(id);
         }
 
         [HttpPost]
         public long Create(NewClientDto client)
         {
-            return clientService.Create(client);
+            return _clientService.Create(client);
+        }
+
+        [HttpPut("{id}")]
+        public void Change(long id, [FromBody]ClientChangesDto clientChanges)
+        {
+            _clientService.Change(id, clientChanges);
         }
     }        
 }

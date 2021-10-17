@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using ProMan2.Dto;
 using ProMan2.Model;
 using System;
@@ -11,9 +12,11 @@ namespace ProMan2.Services
     public class ProjectService
     {
         private readonly ProManContext _context;
+        private readonly IConfiguration _config;
 
-        public ProjectService(ProManContext context)
+        public ProjectService(ProManContext context, IConfiguration configuration)
         {
+            _config = configuration;
             _context = context;
         }
 
@@ -194,6 +197,13 @@ namespace ProMan2.Services
                     Status = x.Status.ToString(),
                     Number = x.Id
                 });
+        }
+
+        public void RemoveTask(long id)
+        {
+            var task = _context.Tasks.Single(x => x.Id == id);
+            _context.Tasks.Remove(task);
+            _context.SaveChanges();
         }
 
         public IEnumerable<ProjectStatisticDto> GetStatistic()

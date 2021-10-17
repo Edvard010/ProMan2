@@ -11,6 +11,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using ProMan2.Model;
+using ProMan2.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,6 +58,11 @@ namespace ProMan2
                     ValidateAudience = false
                 };
             });
+
+            services.AddTransient<UserService>();
+            services.AddTransient<ProjectService>();
+            services.AddTransient<ClientService>();
+
             //services.AddSwaggerGen(c =>
             //{
             //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProMan2", Version = "v1" });
