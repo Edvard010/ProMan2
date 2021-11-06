@@ -99,6 +99,13 @@ namespace ProMan2.Services
             _context.SaveChanges();
         }
 
+        public void RemoveProject(long id)
+        {
+            var project = _context.Projects.Single(x => x.Id == id);
+            _context.Projects.Remove(project);
+            _context.SaveChanges();
+        }
+
         public void AddComment(NewCommentDto comment, long id)
         {
             var newComment = new ProjectComment

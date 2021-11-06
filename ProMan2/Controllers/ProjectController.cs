@@ -59,5 +59,11 @@ namespace ProMan2.Controllers
             _projectService.EditProject(id, projectChanges);
         }//działa
         
+        [HttpDelete("{id}")]
+        public void Delete(long id)
+        {
+            _projectService.RemoveProject(id);
+        }
+
     }
 }
