@@ -52,5 +52,12 @@ namespace ProMan2.Controllers
         {
             return _projectService.GetStatistic();
         }
+
+        [HttpPut("{id}")]
+        public void Edit(long id, ProjectChangesDto projectChanges)
+        {
+            _projectService.EditProject(id, projectChanges);
+        }//działa
+        
     }
 }

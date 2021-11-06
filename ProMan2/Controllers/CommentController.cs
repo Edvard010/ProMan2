@@ -41,5 +41,12 @@ namespace ProMan2.Controllers
         {
             _projectService.RemoveComment(id);
         }
+
+        [HttpPut("comment/{id}")]
+        public void Edit(long id, [FromBody]CommentChangesDto commentChanges)
+        {
+            _projectService.EditComment(id, commentChanges);
+        }
+        
     }
 }

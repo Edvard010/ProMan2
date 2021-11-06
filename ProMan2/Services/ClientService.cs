@@ -46,8 +46,7 @@ namespace ProMan2.Services
                 client.Phone = clientChanges.Phone;
                 client.Address = clientChanges.Address;
                 client.Description = clientChanges.Description;
-            }
-            
+            }            
             else
             {
                 return;

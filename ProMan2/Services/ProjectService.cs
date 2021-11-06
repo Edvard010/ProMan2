@@ -83,6 +83,22 @@ namespace ProMan2.Services
             _context.SaveChanges();
         }
 
+        public void EditProject(long id, ProjectChangesDto projectChanges)
+        {
+            var project = _context.Projects.SingleOrDefault(x => x.Id == id);
+            if (project != null)
+            {
+                project.Name = projectChanges.Name;
+                project.Description = projectChanges.Description;
+                project.Pricing = projectChanges.Pricing;
+            }
+            else
+            {
+                return;
+            }
+            _context.SaveChanges();
+        }
+
         public void AddComment(NewCommentDto comment, long id)
         {
             var newComment = new ProjectComment
@@ -103,6 +119,21 @@ namespace ProMan2.Services
             _context.Comments.Remove(comment);
             _context.SaveChanges();
         }
+
+        public void EditComment(long id, CommentChangesDto commentChanges)
+        {
+            var comment = _context.Comments.SingleOrDefault(x => x.Id == id);
+            if (comment != null)
+            {
+                comment.Message = commentChanges.Message;
+            }
+            else
+            {
+                return;
+            }
+            _context.SaveChanges();
+        }
+    
 
         public IEnumerable<CommentDto> GetAllComments(long projectId)
         {

@@ -44,6 +44,6 @@ namespace ProMan2.Controllers
         public void Change(long id, [FromBody]ClientChangesDto clientChanges)
         {
             _clientService.Change(id, clientChanges);
-        }
+        } //DZIAŁA
     }        
 }
