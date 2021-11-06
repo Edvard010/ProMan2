@@ -20,20 +20,48 @@ namespace ProMan2.Services
             _config = configuration;
         }
 
-        public long Create(NewClientDto client)
+        public bool Create(NewClientDto client)
         {
-            var newClient = new Client
+            if (!_context.Clients.Any(x => x.Email == client.Email))
             {
-                Name = client.Name,
-                Phone = client.Phone,
-                Address = client.Address,
-                Description = client.Description,
-                Email = client.Email,
-            };
-            _context.Clients.Add(newClient);
-            _context.SaveChanges();
+                var newClient = new Client
+                {
+                    Name = client.Name, 
+                    Phone = client.Phone,
+                    Address = client.Address,
+                    Description = client.Description,
+                    Email = client.Email,
+                };
+                _context.Clients.Add(newClient);
+                _context.SaveChanges();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
-            return newClient.Id;
+        public void Create2(NewClientDto client)
+        {
+            if (!_context.Clients.Any(x => x.Email == client.Email))
+            {
+                var newClient = new Client
+                {
+                    Name = client.Name,
+                    Phone = client.Phone,
+                    Address = client.Address,
+                    Description = client.Description,
+                    Email = client.Email,
+                };
+                _context.Clients.Add(newClient);
+                _context.SaveChanges();
+                
+            }
+            else
+            {
+                throw new Exception("email w użyciu");
+            }
         }
 
         public void Change(long id, ClientChangesDto clientChanges)
@@ -46,15 +74,15 @@ namespace ProMan2.Services
                 client.Phone = clientChanges.Phone;
                 client.Address = clientChanges.Address;
                 client.Description = clientChanges.Description;
-            }            
+            }
             else
             {
                 return;
             }
             _context.SaveChanges();
         }
-            
-                   
+
+
 
         public IEnumerable<ClientItemDto> GetAll()
         {
@@ -86,6 +114,20 @@ namespace ProMan2.Services
             });
 
 
+        }
+        public ClientDetailsDto GetByEmail(string email)
+        {
+            var client = _context.Clients.SingleOrDefault(x => x.Email == email);
+            if (client == null)
+            {
+                return null;
+            }
+            return new ClientDetailsDto
+            {
+                Id = client.Id,
+                Name = client.Name,
+                Email = client.Email,
+            };
         }
 
         public ClientDetailsDto Get(long id)

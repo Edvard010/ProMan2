@@ -63,6 +63,7 @@ namespace ProMan2
             services.AddTransient<ProjectService>();
             services.AddTransient<ClientService>();
 
+
             //services.AddSwaggerGen(c =>
             //{
             //    c.SwaggerDoc("v1", new OpenApiInfo { Title = "ProMan2", Version = "v1" });

@@ -35,10 +35,31 @@ namespace ProMan2.Controllers
         }
 
         [HttpPost]
-        public long Create(NewClientDto client)
+        public IActionResult Create(NewClientDto client)
         {
-            return _clientService.Create(client);
+            if (_clientService.Create(client) == true)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest("Client with this email already exists");
+            }
         }
+
+        //public IActionResult Create2(NewClientDto client)
+        //{
+        //    try
+        //    {
+        //        _clientService.Create2(client);
+        //        return Ok();
+        //    }
+        //    catch(Exception ex)
+        //    {
+        //        return BadRequest(ex.Message);
+        //    }
+            
+        //}
 
         [HttpPut("{id}")]
         public void Change(long id, [FromBody]ClientChangesDto clientChanges)

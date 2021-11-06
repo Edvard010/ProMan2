@@ -24,7 +24,7 @@ namespace ProMan2.Controllers
 
         [HttpPost]
         public void Register(RegisterDto register)
-        {
+        {            
             _userService.Register(register);
         }
     }
