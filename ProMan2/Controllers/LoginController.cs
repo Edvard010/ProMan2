@@ -29,9 +29,22 @@ namespace ProMan2.Controllers
         }
 
         [HttpPost("login")]
-        public UserDto Login(LoginDto login)
+        public IActionResult Login(LoginDto login)
         {
-            return _userService.Login(login);
+            if (_userService.Login(login) == true)
+            {
+                return Ok();
+            }
+            else
+            {
+                return BadRequest("login or password incorrect");
+            }
         }
+
+        //[HttpPost("login")]
+        //public UserDto Login(LoginDto login)
+        //{
+        //    return _userService.Login(login);
+        //}
     }
 }

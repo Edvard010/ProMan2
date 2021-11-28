@@ -52,27 +52,63 @@ namespace ProMan2.Services
             };
         }
 
-        public UserDto Login(LoginDto login)
+        public bool Login(LoginDto login)
         {
             var hash = GetHash(login.Password);
 
-            if (!_context.Users.Any())
-            {
-                return null;
-            }
+            //if (!_context.Users.Any())
+            //{
+            //    return null;
+            //}
+            
 
             var user = _context.Users.SingleOrDefault(x => x.Login == login.Login);
-            if (user.Password == hash)
+            if (user != null)
             {
-                return new UserDto
+                if (user.Password == hash)
                 {
-                    Login = user.Login,
-                    Token = GenerateToken(user.Login)
-                };
+                    new UserDto
+                    {
+                        Login = user.Login,
+                        Token = GenerateToken(user.Login)
+                    };
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
             }
-
-            return null;
+            else
+            {
+                return false;
+            }
+           //tu można dodać zwrócenie jakiegoś komunikatu błędu typu "
         }
+
+        //public UserDto Login(LoginDto login)
+        //{
+        //    var hash = GetHash(login.Password);
+
+        //    if (!_context.Users.Any())
+        //    {
+        //        return null;
+        //    }
+
+
+        //    var user = _context.Users.SingleOrDefault(x => x.Login == login.Login);
+
+        //    if (user.Password == hash)
+        //    {
+        //        return new UserDto
+        //        {
+        //            Login = user.Login,
+        //            Token = GenerateToken(user.Login)
+        //        };
+        //    }
+
+        //    return null; //tu można dodać zwrócenie jakiegoś komunikatu błędu typu "
+        //}
 
         private string GetHash(string password)
         {
